@@ -1,0 +1,109 @@
+Spring Boot Notes
+<================>
+What is Spring?
+Spring is a powerful Java framework used for building enterprise-level applications. It simplifies application development by providing infrastructure support such as dependency injection, web MVC, data access, and more.
+
+Spring Initializer
+Use the official Spring Initializer to create a Spring Boot project:
+🔗 https://start.spring.io/
+
+Maven
+Maven is a build tool used for compiling, packaging, and managing dependencies for Java projects.
+
+Creating a Spring Boot Application
+-----------------------------------
+Project Settings:
+Project Type: Maven
+Language: Java
+Spring Boot Version: Default (recommended stable version)
+Group: cfg.lms (for proprietary applications)
+Artifact: lms-book-management
+Name: lms-book-management
+Package Name: cfg.lms.bkm
+Packaging: JAR
+Java Version: 17
+Note:
+If your application is public or open-source, the Group can be something like org.example
+
+
+Spring Stereotype Annotations (Beans)
+--------------------------------------------
+Spring provides various stereotype annotations to define components of your application:
+
+Annotation	Description
+-------------------------
+@Component	A generic bean used to mark a class as a Spring-managed component. It usually holds configuration or shared logic.
+@Service		A specialized @Component that holds business logic.
+@Repository	A specialized @Component used for data access logic, such as writing SQL queries or interacting with databases.
+@Controller	A specialized @Component used for handling UI logic and HTTP requests in web applications.
+
+Note: All of the above are known as stereotype annotations, and they are automatically registered as Spring beans in the application context.
+
+Adding Lombok Dependency in a Spring Boot Project
+--------------------------------------------------------
+Steps to Add Lombok Using Maven:
+Open Browser and go to:
+🔗 https://mvnrepository.com
+Search for: lombok
+Select the first result, then click on the latest version.
+Copy the Maven dependency code.
+Paste it into the <dependencies> section of your pom.xml file.
+
+After pasting the dependency, follow these steps if Lombok does not show up in Maven Dependencies:
+Right-click the project → Maven → Force Update → Click OK
+If still not added, right-click the project → Run As → Maven install
+
+
+
+Customer <----- user ----> librarian
+When there are multiple child classes (implementations) of a common parent class or interface, and you use @Autowired to inject the dependency, Spring cannot decide which implementation to use. This causes an ambiguity error during runtime.
+ Solution: Use @Qualifier for By-Name Injection
+@Autowired
+@Qualifier("child1")
+private ParentService parentService;
+
+Annotation	Purpose
+--------------------
+@Autowired	Injects a bean by type
+@Qualifier	Specifies the bean name (by name) when multiple beans of the same type exist
+
+
+
+Scope of a bean:
+------------------
+scope defines number of instances of bean to be created inside the spring container 
+system bases
+~~~~~~~~~~
+    singletone - one object will be created (default scope)
+    prototyope - n of time we call n times will create object.
+webbased
+~~~~~~~~~~
+     request - for every request one obj will created.
+     session - session scope is limited to login and logout or once browser is closed or we can set some time limit.
+     application - when application start obj will created when we close application then obj are cleared.
+
+@Scope(scopeName = "singleton");
+at the top class where two objects are created.
+
+
+https://sharetext.io/287fbe1b
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
