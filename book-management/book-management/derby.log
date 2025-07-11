@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Fri Jul 11 09:48:10 IST 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-0197-f7b4-7a61-0000013b1418 
+on database directory memory:C:\Users\coforge\Downloads\book-management\book-management\4f46b79e-9121-4bab-b7a0-3a9c50bb1ade with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@22d8cfe0 
+Loaded from file:/C:/Users/coforge/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
+java.vendor=Eclipse Adoptium
+java.runtime.version=17.0.4.1+1
+user.dir=C:\Users\coforge\Downloads\book-management\book-management
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
