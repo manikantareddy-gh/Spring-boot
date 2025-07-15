@@ -1,1 +1,92 @@
+Spring JPA is a part of Spring Data JPA. It makes it easy to work with the database in Java.
+JPA means Java Persistence API. It is used to store Java objects in the database, update them, and retrieve them.
+Simply, we can say that it converts a normal Java class into an entity, which is like a database table.
 
+In Spring Data JPA, we create an entity that relates to a database table.
+By extending the JPA repository, we create an interface where query methods are automatically created by Spring.
+
+@Entity
+public class Student {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
+    private int age;
+}
+It is an entity class, which is like a database table.
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+    List<Student> findByName(String name); // Idi query laga panichesthadi
+}
+The main benefit of JPA is that we do not need to write queries manually.
+By using methods like findByName, findByAgeGreaterThan, we get queries automatically.
+
+Annotations in JPA
+------------------
+@Entity
+It is used to convert the Java class into a database table.
+Must have a primary key field (@Id).
+
+java
+Copy
+Edit
+@Entity
+public class Student {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
+}
+@Table(name = "students")
+It is used to specify the table name in the database.
+
+java
+Copy
+Edit
+@Entity
+@Table(name = "students")
+public class Student {
+    // ...
+}
+By default, the table name will be the same as the class name. But by using @Table, we can customize it.
+
+@Column
+It is used to specify the column name and other properties.
+@Column is optional unless you want customization.
+
+@JoinColumn
+It is used to define the foreign key relationship, mainly when we have another entity inside the class.
+
+@Entity
+public class Student {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "school_id") // foreign key in Student table
+    private School school;
+}
+Optional in Java 8+ with JPA
+Optional is a container class that may or may not contain a non-null value.
+In JPA, especially the findById() method returns Optional<T>.
+
+Optional<Student> studentOpt = studentRepository.findById(1L);
+
+if (studentOpt.isPresent()) {
+    Student student = studentOpt.get();
+    // student data use cheyyachu
+} else {
+    // student not found
+}
+It helps to avoid NullPointerException.
+
+Repository
+In Spring JPA, when we extend JpaRepository, Spring automatically generates the implementation.
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+    // Custom methods
+    List<Student> findByName(String name);
+}
